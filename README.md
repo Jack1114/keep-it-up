@@ -1,6 +1,6 @@
-# MyVocabularyApp
+# keep it up
 
-A new Flutter project.
+A flutter app for learning new vocabulary.
 
 ## Getting Started
 
