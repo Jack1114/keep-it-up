@@ -16,32 +16,36 @@ class _DropDownListState extends State<DropDownList> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: DropdownButton<String>(
-        value: selectedItem,
-        onChanged: (String string) => setState(() => selectedItem = string),
-        selectedItemBuilder: (BuildContext context) {
-          return items.map<Widget>((String item) {
-            return Text(item);
-          }).toList();
-        },
-        items: items.map((String item) {
-          return DropdownMenuItem<String>(
-            child: Text('Log $item'),
-            value: item,
-          );
-        }).toList(),
-      ),
+    return DropdownButton<String>(
+      value: selectedItem,
+      elevation: 2,
+      underline: Container(),
+      onChanged: (String string) => setState(() => selectedItem = string),
+      selectedItemBuilder: (BuildContext context) {
+        return items.map<Widget>((String item) {
+          return Text(item);
+        }).toList();
+      },
+      items: items.map((String item) {
+        return DropdownMenuItem<String>(
+          child: Text(item),
+          value: item,
+        );
+      }).toList(),
     );
   }
 }
 
+Widget createNewCategory = FlatButton(
+  color: Colors.black,
+  child: Text('Add a new category'),
+  textColor: Colors.white,
+  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+  onPressed: () {},
+);
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-  String valueChoose;
-  List categoryItem = ["Category 1", "Category 2", "Category 3"];
 
   //titleSection widget
   Widget titleSection = Container(
@@ -82,6 +86,8 @@ class MyApp extends StatelessWidget {
       ),
       Text('Choose a category'),
       DropDownList(),
+      Text('Or create a new one'),
+      createNewCategory,
     ],
   );
 
