@@ -5,6 +5,38 @@ void main() {
   runApp(MyApp());
 }
 
+class DropDownList extends StatefulWidget {
+  @override
+  _DropDownListState createState() => _DropDownListState();
+}
+
+class _DropDownListState extends State<DropDownList> {
+  final List<String> items = <String>['1', '2', '3'];
+  String selectedItem = '1';
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: DropdownButton<String>(
+        value: selectedItem,
+        onChanged: (String string) => setState(() => selectedItem = string),
+        selectedItemBuilder: (BuildContext context) {
+          return items.map<Widget>((String item) {
+            return Text(item);
+          }).toList();
+        },
+        items: items.map((String item) {
+          return DropdownMenuItem<String>(
+            child: Text('Log $item'),
+            value: item,
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
@@ -49,12 +81,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       Text('Choose a category'),
-      DropdownButton(
-        hint: Text("Choose a category"),
-        icon: Icon(Icons.arrow_drop_down),
-        iconSize: 30,
-        value: valueChoose,
-      )
+      DropDownList(),
     ],
   );
 
