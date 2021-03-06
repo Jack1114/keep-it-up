@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'string.dart';
 
@@ -5,13 +7,14 @@ void main() {
   runApp(MyApp());
 }
 
+List<String> items = <String>['1', '2', '3'];
+
 class DropDownList extends StatefulWidget {
   @override
   _DropDownListState createState() => _DropDownListState();
 }
 
 class _DropDownListState extends State<DropDownList> {
-  final List<String> items = <String>['1', '2', '3'];
   String selectedItem = '1';
 
   @override
@@ -36,12 +39,61 @@ class _DropDownListState extends State<DropDownList> {
   }
 }
 
-Widget createNewCategory = FlatButton(
-  color: Colors.black,
+class NewCategoryList extends StatefulWidget {
+  NewCategoryList({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _NewCategoryListState createState() => _NewCategoryListState();
+}
+
+class _NewCategoryListState extends State<NewCategoryList> {
+  TextEditingController _textFieldController = TextEditingController();
+  String valueText;
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Text field in dialog'),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Text Field in Dialog"),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  setState(() {
+                    //codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+                child: Text('OK'),
+                color: new Color(0XFF77CFD9),
+                textColor: new Color(0XFFF2F2F2),
+              ),
+            ],
+          );
+        });
+  }
+}
+
+Widget createNewCategory = RaisedButton(
+  color: new Color(0XFFF27052),
+  //splashColor: new Color(0XFFF2C777),
+  highlightColor: new Color(0XFFF2C777),
   child: Text('Add a new category'),
-  textColor: Colors.white,
-  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-  onPressed: () {},
+  textColor: new Color(0XFFF2F2F2),
+  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+  onPressed: () {
+    _displayTextInputDialog(context);
+  },
 );
 
 class MyApp extends StatelessWidget {
@@ -57,7 +109,7 @@ class MyApp extends StatelessWidget {
             child: Text(
               Strings.appheadingTitle,
               style: TextStyle(
-                color: new Color(0xFF4E8585),
+                color: new Color(0xFF77CFD9),
                 fontWeight: FontWeight.bold,
                 fontSize: 30.0,
               ),
@@ -103,7 +155,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appBarTitle,
       theme: ThemeData(
-        primaryColor: new Color(0xFF4E8585),
+        primaryColor: new Color(0XFF77CFD9),
       ),
       home: DefaultTabController(
         length: 4,
@@ -116,6 +168,7 @@ class MyApp extends StatelessWidget {
                 Tab(text: "Test"),
                 Tab(text: "List"),
               ],
+              labelColor: new Color(0XFFF2F2F2),
             ),
             title: Text(
               Strings.appBarTitle,
