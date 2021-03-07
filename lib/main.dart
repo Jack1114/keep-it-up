@@ -51,6 +51,12 @@ class _NewCategoryListState extends State<NewCategoryList> {
   TextEditingController _textFieldController = TextEditingController();
   String valueText;
 
+  void addCategoryItem() {
+    setState(() {
+      items.insert(0, _textFieldController.text);
+    });
+  }
+
   Future<void> _displayTextInputDialog(BuildContext context) async {
     return showDialog(
         context: context,
@@ -63,11 +69,12 @@ class _NewCategoryListState extends State<NewCategoryList> {
                 });
               },
               controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Write here"),
+              decoration: InputDecoration(hintText: "New category"),
             ),
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
+                  addCategoryItem();
                   setState(() {
                     //codeDialog = valueText;
                     Navigator.pop(context);
