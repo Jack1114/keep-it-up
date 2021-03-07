@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'string.dart';
@@ -56,7 +56,6 @@ class _NewCategoryListState extends State<NewCategoryList> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Text field in dialog'),
             content: TextField(
               onChanged: (value) {
                 setState(() {
@@ -64,7 +63,7 @@ class _NewCategoryListState extends State<NewCategoryList> {
                 });
               },
               controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Text Field in Dialog"),
+              decoration: InputDecoration(hintText: "Write here"),
             ),
             actions: <Widget>[
               FlatButton(
@@ -82,19 +81,21 @@ class _NewCategoryListState extends State<NewCategoryList> {
           );
         });
   }
-}
 
-Widget createNewCategory = RaisedButton(
-  color: new Color(0XFFF27052),
-  //splashColor: new Color(0XFFF2C777),
-  highlightColor: new Color(0XFFF2C777),
-  child: Text('Add a new category'),
-  textColor: new Color(0XFFF2F2F2),
-  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-  onPressed: () {
-    _displayTextInputDialog(context);
-  },
-);
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      color: new Color(0XFFF27052),
+      //splashColor: new Color(0XFFF2C777),
+      highlightColor: new Color(0XFFF2C777),
+      child: Text('Add a new category'),
+      textColor: new Color(0XFFF2F2F2),
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      onPressed: () {
+        _displayTextInputDialog(context);
+      },
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -139,7 +140,7 @@ class MyApp extends StatelessWidget {
       Text('Choose a category'),
       DropDownList(),
       Text('Or create a new one'),
-      createNewCategory,
+      NewCategoryList(),
     ],
   );
 
