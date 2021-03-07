@@ -148,6 +148,17 @@ class MyApp extends StatelessWidget {
       DropDownList(),
       Text('Or create a new one'),
       NewCategoryList(),
+      RaisedButton(
+          color: new Color(0XFFF27052),
+          //splashColor: new Color(0XFFF2C777),
+          highlightColor: new Color(0XFFF2C777),
+          child: Icon(
+            Icons.check,
+            color: new Color(0XFFF2F2F2),
+          ),
+          textColor: new Color(0XFFF2F2F2),
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          onPressed: () {}),
     ],
   );
 
