@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,6 +10,7 @@ void main() {
 
 List<String> items = <String>['1', '2', '3'];
 
+//DropDown List for seeing the categories
 class DropDownList extends StatefulWidget {
   @override
   _DropDownListState createState() => _DropDownListState();
@@ -39,6 +41,7 @@ class _DropDownListState extends State<DropDownList> {
   }
 }
 
+//Alert dialog for creating a new category
 class NewCategoryList extends StatefulWidget {
   NewCategoryList({Key key, this.title}) : super(key: key);
   final String title;
@@ -72,7 +75,7 @@ class _NewCategoryListState extends State<NewCategoryList> {
               decoration: InputDecoration(hintText: "New category"),
             ),
             actions: <Widget>[
-              FlatButton(
+              Button(
                 onPressed: () {
                   addCategoryItem();
                   setState(() {
@@ -89,8 +92,10 @@ class _NewCategoryListState extends State<NewCategoryList> {
         });
   }
 
+  //Button for adding a new category
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
+      style: Color,
       color: new Color(0XFFF27052),
       //splashColor: new Color(0XFFF2C777),
       highlightColor: new Color(0XFFF2C777),
@@ -104,10 +109,9 @@ class _NewCategoryListState extends State<NewCategoryList> {
   }
 }
 
+//HomePage classe
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
-  //titleSection widget
+  // This widget is the root of your application
   Widget titleSection = Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -126,39 +130,60 @@ class MyApp extends StatelessWidget {
     ),
   );
 
+  /* saveData(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    prefs.setString(key, value);
+  } */
+
+  //addSection
   Widget addPage = Column(
     children: <Widget>[
       Text('Add a new word'),
+
       TextField(
         obscureText: false,
         decoration: InputDecoration(
+          //controller: _controller_word,
           border: OutlineInputBorder(),
           labelText: 'Insert a new word in English',
         ),
       ),
+
       Text('Write the translation'),
+
       TextField(
         obscureText: false,
         decoration: InputDecoration(
+          //controller: _controller_translation,
           border: OutlineInputBorder(),
           labelText: 'Insert the translation',
         ),
       ),
+
       Text('Choose a category'),
+
       DropDownList(),
+
       Text('Or create a new one'),
+
       NewCategoryList(),
+
+      //Done Button (= saving words)
       RaisedButton(
-          color: new Color(0XFFF27052),
-          //splashColor: new Color(0XFFF2C777),
-          highlightColor: new Color(0XFFF2C777),
-          child: Icon(
-            Icons.check,
-            color: new Color(0XFFF2F2F2),
-          ),
-          textColor: new Color(0XFFF2F2F2),
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          onPressed: () {}),
+        color: new Color(0XFFF27052),
+        //splashColor: new Color(0XFFF2C777),
+        highlightColor: new Color(0XFFF2C777),
+        child: Icon(
+          Icons.check,
+          color: new Color(0XFFF2F2F2),
+        ),
+        textColor: new Color(0XFFF2F2F2),
+        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        onPressed: () {},
+        //saveData(_controller_word.text, _controller_translation.text),
+        //child: Text('Save Data'),
+      )
     ],
   );
 
@@ -168,6 +193,7 @@ class MyApp extends StatelessWidget {
 
   Widget listPage = Container();
 
+  //HomePage
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
