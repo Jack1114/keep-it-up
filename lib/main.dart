@@ -75,7 +75,7 @@ class _NewCategoryListState extends State<NewCategoryList> {
               decoration: InputDecoration(hintText: "New category"),
             ),
             actions: <Widget>[
-              Button(
+              TextButton(
                 onPressed: () {
                   addCategoryItem();
                   setState(() {
@@ -83,9 +83,13 @@ class _NewCategoryListState extends State<NewCategoryList> {
                     Navigator.pop(context);
                   });
                 },
-                child: Text('OK'),
-                color: new Color(0XFF77CFD9),
-                textColor: new Color(0XFFF2F2F2),
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: new Color(0XFFF2F2F2)),
+                ),
+                style: TextButton.styleFrom(
+                  backgroundColor: new Color(0XFF77CFD9),
+                ),
               ),
             ],
           );
@@ -95,17 +99,19 @@ class _NewCategoryListState extends State<NewCategoryList> {
   //Button for adding a new category
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: Color,
-      color: new Color(0XFFF27052),
-      //splashColor: new Color(0XFFF2C777),
-      highlightColor: new Color(0XFFF2C777),
-      child: Text('Add a new category'),
-      textColor: new Color(0XFFF2F2F2),
-      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      onPressed: () {
-        _displayTextInputDialog(context);
-      },
-    );
+        onPressed: () {
+          _displayTextInputDialog(context);
+        },
+        child: Text(
+          'Add a new category',
+          style: TextStyle(color: new Color(0XFFF2F2F2)),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: new Color(0XFFF27052),
+          onPrimary: new Color(0XFFF2F2F2),
+          elevation: 3,
+          shadowColor: new Color(0XFFF2C777),
+        ));
   }
 }
 
@@ -170,16 +176,17 @@ class MyApp extends StatelessWidget {
       NewCategoryList(),
 
       //Done Button (= saving words)
-      RaisedButton(
-        color: new Color(0XFFF27052),
-        //splashColor: new Color(0XFFF2C777),
-        highlightColor: new Color(0XFFF2C777),
+      ElevatedButton(
         child: Icon(
           Icons.check,
           color: new Color(0XFFF2F2F2),
         ),
-        textColor: new Color(0XFFF2F2F2),
-        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        style: ElevatedButton.styleFrom(
+          primary: new Color(0XFFF27052),
+          onPrimary: new Color(0XFFF2F2F2),
+          elevation: 3,
+          shadowColor: new Color(0XFFF2C777),
+        ),
         onPressed: () {},
         //saveData(_controller_word.text, _controller_translation.text),
         //child: Text('Save Data'),
