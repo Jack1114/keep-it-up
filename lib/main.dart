@@ -198,7 +198,20 @@ class MyApp extends StatelessWidget {
 
   Widget testPage = Container();
 
-  Widget listPage = Container();
+  Widget listPage = ListView.separated(
+    itemBuilder: (BuildContext context, int index) {
+      return Container(
+        height: 50,
+        color: new Color(0xFFF27052),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: Text('Category ${items[index]}'),
+        ),
+      );
+    },
+    separatorBuilder: (BuildContext context, int index) => const Divider(),
+    itemCount: items.length,
+  );
 
   //HomePage
   @override
