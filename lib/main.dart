@@ -204,9 +204,17 @@ class MyApp extends StatelessWidget {
         height: 50,
         color: new Color(0xFFF27052),
         child: Align(
-          alignment: Alignment.topLeft,
-          child: Text('Category ${items[index]}'),
-        ),
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                'Category ${items[index]}',
+                style: TextStyle(
+                  color: new Color(0XFFF2F2F2),
+                  fontSize: 18.00,
+                ),
+              ),
+            )),
       );
     },
     separatorBuilder: (BuildContext context, int index) => const Divider(),
