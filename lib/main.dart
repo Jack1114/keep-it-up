@@ -3,9 +3,29 @@
 import 'package:flutter/material.dart';
 import 'string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(MyApp());
+}
+
+Future<String> get _localPath async {
+  final directory = await getApplicationDocumentsDirectory();
+
+  return directory.path;
+}
+
+Future<File> get _localFile async {
+  final path = await _localPath;
+  return File('$path/counter.txt');
+}
+
+Future<File> writeCounter(int counter) async {
+  final file = await _localFile;
+
+  // Write the file.
+  return file.writeAsString('$counter');
 }
 
 List<String> items = <String>['1', '2', '3'];
@@ -136,12 +156,6 @@ class MyApp extends StatelessWidget {
     ),
   );
 
-  /* saveData(String key, String value) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    prefs.setString(key, value);
-  } */
-
   //addSection
   Widget addPage = Column(
     children: <Widget>[
@@ -150,7 +164,6 @@ class MyApp extends StatelessWidget {
       TextField(
         obscureText: false,
         decoration: InputDecoration(
-          //controller: _controller_word,
           border: OutlineInputBorder(),
           labelText: 'Insert a new word in English',
         ),
@@ -161,7 +174,6 @@ class MyApp extends StatelessWidget {
       TextField(
         obscureText: false,
         decoration: InputDecoration(
-          //controller: _controller_translation,
           border: OutlineInputBorder(),
           labelText: 'Insert the translation',
         ),
@@ -187,9 +199,7 @@ class MyApp extends StatelessWidget {
           elevation: 3,
           shadowColor: new Color(0XFFF2C777),
         ),
-        onPressed: () {},
-        //saveData(_controller_word.text, _controller_translation.text),
-        //child: Text('Save Data'),
+        onPressed: writeCounter,
       )
     ],
   );
