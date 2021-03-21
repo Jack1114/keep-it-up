@@ -5,6 +5,7 @@ import 'string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'add_word_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -156,53 +157,53 @@ class MyApp extends StatelessWidget {
     ),
   );
 
-  //addSection
-  Widget addPage = Column(
-    children: <Widget>[
-      Text('Add a new word'),
+  // //addSection
+  // Widget addPage = Column(
+  //   children: <Widget>[
+  //     Text('Add a new word'),
 
-      TextField(
-        obscureText: false,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Insert a new word in English',
-        ),
-      ),
+  //     TextField(
+  //       obscureText: false,
+  //       decoration: InputDecoration(
+  //         border: OutlineInputBorder(),
+  //         labelText: 'Insert a new word in English',
+  //       ),
+  //     ),
 
-      Text('Write the translation'),
+  //     Text('Write the translation'),
 
-      TextField(
-        obscureText: false,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Insert the translation',
-        ),
-      ),
+  //     TextField(
+  //       obscureText: false,
+  //       decoration: InputDecoration(
+  //         border: OutlineInputBorder(),
+  //         labelText: 'Insert the translation',
+  //       ),
+  //     ),
 
-      Text('Choose a category'),
+  //     Text('Choose a category'),
 
-      DropDownList(),
+  //     DropDownList(),
 
-      Text('Or create a new one'),
+  //     Text('Or create a new one'),
 
-      NewCategoryList(),
+  //     NewCategoryList(),
 
-      //Done Button (= saving words)
-      ElevatedButton(
-        child: Icon(
-          Icons.check,
-          color: new Color(0XFFF2F2F2),
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: new Color(0XFFF27052),
-          onPrimary: new Color(0XFFF2F2F2),
-          elevation: 3,
-          shadowColor: new Color(0XFFF2C777),
-        ),
-        onPressed: writeCounter,
-      )
-    ],
-  );
+  //     //Done Button (= saving words)
+  //     ElevatedButton(
+  //       child: Icon(
+  //         Icons.check,
+  //         color: new Color(0XFFF2F2F2),
+  //       ),
+  //       style: ElevatedButton.styleFrom(
+  //         primary: new Color(0XFFF27052),
+  //         onPrimary: new Color(0XFFF2F2F2),
+  //         elevation: 3,
+  //         shadowColor: new Color(0XFFF2C777),
+  //       ),
+  //       onPressed: writeCounter,
+  //     )
+  //   ],
+  // );
 
   Widget learnPage = Container();
 
@@ -260,7 +261,7 @@ class MyApp extends StatelessWidget {
           ),
           body: TabBarView(children: <Widget>[
             learnPage,
-            addPage,
+            AddWordWidget(storage: WordStorage()),
             testPage,
             listPage,
           ]),
