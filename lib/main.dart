@@ -1,11 +1,13 @@
 //import 'dart:html';
 
+import 'package:MyVocabularyApp/word_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'add_word_widget.dart';
+import 'word_list_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -50,80 +52,9 @@ class MyApp extends StatelessWidget {
     ),
   );
 
-  // //addSection
-  // Widget addPage = Column(
-  //   children: <Widget>[
-  //     Text('Add a new word'),
-
-  //     TextField(
-  //       obscureText: false,
-  //       decoration: InputDecoration(
-  //         border: OutlineInputBorder(),
-  //         labelText: 'Insert a new word in English',
-  //       ),
-  //     ),
-
-  //     Text('Write the translation'),
-
-  //     TextField(
-  //       obscureText: false,
-  //       decoration: InputDecoration(
-  //         border: OutlineInputBorder(),
-  //         labelText: 'Insert the translation',
-  //       ),
-  //     ),
-
-  //     Text('Choose a category'),
-
-  //     DropDownList(),
-
-  //     Text('Or create a new one'),
-
-  //     NewCategoryList(),
-
-  //     //Done Button (= saving words)
-  //     ElevatedButton(
-  //       child: Icon(
-  //         Icons.check,
-  //         color: new Color(0XFFF2F2F2),
-  //       ),
-  //       style: ElevatedButton.styleFrom(
-  //         primary: new Color(0XFFF27052),
-  //         onPrimary: new Color(0XFFF2F2F2),
-  //         elevation: 3,
-  //         shadowColor: new Color(0XFFF2C777),
-  //       ),
-  //       onPressed: writeCounter,
-  //     )
-  //   ],
-  // );
-
   Widget learnPage = Container();
 
   Widget testPage = Container();
-
-  Widget listPage = ListView.separated(
-    itemBuilder: (BuildContext context, int index) {
-      return Container(
-        height: 50,
-        color: new Color(0xFFF27052),
-        child: Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                'Category ${items[index]}',
-                style: TextStyle(
-                  color: new Color(0XFFF2F2F2),
-                  fontSize: 18.00,
-                ),
-              ),
-            )),
-      );
-    },
-    separatorBuilder: (BuildContext context, int index) => const Divider(),
-    itemCount: items.length,
-  );
 
   //HomePage
   @override
@@ -156,7 +87,7 @@ class MyApp extends StatelessWidget {
             learnPage,
             AddWordWidget(storage: WordStorage()),
             testPage,
-            listPage,
+            WordListWidget(),
           ]),
         ),
       ),
