@@ -63,6 +63,7 @@ class _AddWordWidgetState extends State<AddWordWidget> {
     return widget.storage.writeWords(itaController.text, engController.text);
   }
 
+  //dialog to see saved words
   Future<void> _showSavedWordsDialog() async {
     String words = await widget.storage.readWords();
 

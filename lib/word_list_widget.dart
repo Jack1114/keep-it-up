@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'add_word_widget.dart';
+import 'entry.dart';
 
 class WordListWidget extends StatefulWidget {
   final WordStorage storage;
@@ -20,30 +21,41 @@ class _WordListWidgetState extends State<WordListWidget> {
 //dialog to see saved words
   Future<void> _showSavedWordsDialog() async {
     String words = await widget.storage.readWords();
+    words.split(";");
 
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Contenuto del file'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(words),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Approve'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+    String engWord, itaWord;
+
+    engWord = words[0];
+    itaWord = words[1];
+
+    return ListView.builder(
+      itemCount: words.length,
+      itemBuilder: words[];
+    )
+
+    // return showDialog<void>(
+    //   context: context,
+    //   barrierDismissible: false, // user must tap button!
+    //   builder: (BuildContext context) {
+    //     return AlertDialog(
+    //       title: Text('Contenuto del file'),
+    //       content: SingleChildScrollView(
+    //         child: ListBody(
+    //           children: <Widget>[
+    //             Text(words),
+    //           ],
+    //         ),
+    //       ),
+    //       actions: <Widget>[
+    //         TextButton(
+    //           child: Text('Approve'),
+    //           onPressed: () {
+    //             Navigator.of(context).pop();
+    //           },
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }
 }
