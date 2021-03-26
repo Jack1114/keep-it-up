@@ -3,7 +3,6 @@
 import 'package:MyVocabularyApp/word_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'string.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'add_word_widget.dart';
@@ -87,7 +86,9 @@ class MyApp extends StatelessWidget {
             learnPage,
             AddWordWidget(storage: WordStorage()),
             testPage,
-            WordListWidget(),
+            WordListWidget(
+              storage: WordStorage(),
+            ),
           ]),
         ),
       ),

@@ -133,7 +133,7 @@ class _AddWordWidgetState extends State<AddWordWidget> {
           onPressed: _saveWords,
         ),
 
-        ElevatedButton(onPressed: _showSavedWordsDialog, child: Text('8==>')),
+        ElevatedButton(onPressed: _showSavedWordsDialog, child: Text('Read')),
       ],
     );
   }
